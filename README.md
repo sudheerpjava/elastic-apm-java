@@ -2,7 +2,7 @@
 
 Create below docker image to run the spring boot application as well as add the add the elastic
 APM agent to application.
-
+```
 FROM openjdk:8-jdk
 
 EXPOSE 8080
@@ -16,6 +16,7 @@ COPY $JAR_PATH /opt/app
 RUN wget -O apm-agent.jar https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/1.2.0/elastic-apm-agent-1.2.0.jar
 
 CMD java -javaagent:/opt/app/apm-agent.jar $JVM_OPTIONS -jar $JAR_NAME
+```
 
 ###########################################################################
 
@@ -25,7 +26,7 @@ Example micro-service name : user-service
 
 DockerCompose file:
 ===================
-
+```
 user-microservice:
     image: apm-java/app:1.0.0
     build:
@@ -44,7 +45,7 @@ user-microservice:
     links:
       - apm
       - mysql
-
+```
 
 # Check the logs and reports of APM
 
